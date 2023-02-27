@@ -24,6 +24,7 @@ programma così come lo faremmo "a mano"
 */
 
 
+//----------------------------MAIL---------------------
 
 //1- Definisco l'array di email.
 let eMails = ['fraser@outlook.com', 'esokullu@hotmail.com', 'isorashi@yahoo.com', 'khris@optonline.net', 'kaiser@gmail.com', 'mahbub@live.com', 'crobles@gmail.com'];
@@ -72,5 +73,55 @@ sendButtonEl.addEventListener('click', function () {
         newPEl.style.color = 'red';
 
     };
+
+});
+
+//-------------------------GIOCO DADO--------------------------------
+
+//1- Definisco l'array che conterrà le facce del dado
+let diceFaces = ['<i class="fa-solid fa-dice-one"></i>', '<i class="fa-solid fa-dice-two"></i>', '<i class="fa-solid fa-dice-three"></i>', '<i class="fa-solid fa-dice-four"></i>', '<i class="fa-solid fa-dice-five"></i>', '<i class="fa-solid fa-dice-six"></i>'];
+
+//2- Creo e collego un contenitore che conterrà i risultati del lancio
+let diceResultsEl = document.getElementById('dice-results');
+
+//3- All'interno si andranno a creare due elementi div che conterranno il risultato del giocatore e del suo avversario
+let newDivEl1 = document.createElement('div');
+diceResultsEl.append(newDivEl1);
+
+let newDivEl2 = document.createElement('div');
+diceResultsEl.append(newDivEl2);
+
+//4- Aggiungo un evento al pulsante che crei il risultato randomico
+let diceRollBtnEl = document.getElementById('dice-roll-btn');
+
+diceRollBtnEl.addEventListener('click', function () {
+
+    //5- Genero il risultato randomico del lancio dei due dadi tramite due variabili e il metodo Math.
+    let diceRoll1 = diceFaces[Math.floor(Math.random() * diceFaces.length)];
+    let diceRoll2 = diceFaces[Math.floor(Math.random() * diceFaces.length)];
+
+    //6- Stilizzo i due div dei risultati del lancio
+    newDivEl1.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 30px; margin-bottom: 30px; font-size: 20px; font-weight: bold; color: green;';
+    newDivEl2.style.cssText = 'display: flex; flex-direction: column; align-items: center; gap: 30px; margin-bottom: 30px; font-size: 20px; font-weight: bold; color: red;';
+    
+    //7- Visualizzo i risultati del lancio dei due dadi nei relativi div.
+    newDivEl1.innerHTML = `Il tuo lancio ${diceRoll1}`;
+    newDivEl2.innerHTML = `Il lancio del tuo avversario ${diceRoll2}`;
+
+    //8- Confronto i risultati dei due lanci per determinare il vincitore o un pareggio tramite il metodo .indexOf, dato che
+    //il numero nella faccia del dado corrisponde al numero dell'indice.
+    let index1 = diceFaces.indexOf(diceRoll1);
+    let index2 = diceFaces.indexOf(diceRoll2);
+
+    if (index1 > index2) {
+        newDivEl1.innerHTML = `Il tuo lancio ${diceRoll1} Hai vinto!`;
+        newDivEl2.innerHTML = `Il lancio del tuo avversario ${diceRoll2} Hai perso!`;
+    } else if (index2 > index1) {
+        newDivEl2.innerHTML = `Il lancio del tuo avversario ${diceRoll2} Hai vinto!`;
+        newDivEl1.innerHTML = `Il tuo lancio ${diceRoll1} Hai perso!`;
+    } else {
+        newDivEl1.innerHTML = `Il tuo lancio ${diceRoll1} Pareggio!`;
+        newDivEl2.innerHTML = `Il lancio del tuo avversario ${diceRoll2} Pareggio!`;
+    }
 
 });
