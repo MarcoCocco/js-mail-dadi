@@ -23,37 +23,54 @@ vogliamo fare
 programma così come lo faremmo "a mano" 
 */
 
-//1- Definisco l'array di email.
-//2- Chiedo all'utente la sua Email tramite form e la memorizzo in una variabile.
-//3- Aggiungo un evento al pulsante per verificare l'email inserita dall'utente.
-//4- Creo un ciclo che possa controllare ogni indice del mio Array.
-//? SE l'email inserita corrisponde al valore di un indice, stampa 
-//"Accesso Consentito".
-//: ALTRIMENTI stampa "Email non presente nel database".
+
 
 //1- Definisco l'array di email.
 let eMails = ['fraser@outlook.com', 'esokullu@hotmail.com', 'isorashi@yahoo.com', 'khris@optonline.net', 'kaiser@gmail.com', 'mahbub@live.com', 'crobles@gmail.com'];
 
-//2- Chiedo all'utente la sua Email tramite form e la memorizzo in una variabile.
+//2- Chiedo all'utente la sua email tramite form e la memorizzo in una variabile.
 let userEmailEl = document.getElementById('user-email');
 
-// 3- Aggiungo un evento al pulsante per verificare l'email inserita dall'utente.
+//3- Creo un container che racchiuda gli alert appropriati.
+let alertContainerEl = document.getElementById('alert-container');
+let newPEl = document.createElement('p');
+alertContainerEl.append(newPEl);
+
+// 4- Aggiungo un evento al pulsante per verificare l'email inserita dall'utente.
 let sendButtonEl = document.getElementById('send-button');
 
 sendButtonEl.addEventListener('click', function () {
 
-    //4- Creo un ciclo che possa controllare ogni indice del mio Array.
+    //5- Aggiungo alla variabile NewPEl una stringa vuota in modo che l'alert si resetti all'inizio di ogni ciclo,
+    //e una variabile booleana per verificare se l'email dell'utente corrisponde ad una delle email dell'array.
+    newPEl.textContent = '';
+    let emailFound = false;
+
+    //6- Creo un ciclo che possa controllare ogni indice del mio array.
     for (i = 0; i < eMails.length; i++) {
 
         //? SE l'email inserita corrisponde al valore di un indice, stampa 
         //"Accesso Consentito".
         if (userEmailEl.value === eMails[i]) {
-            console.log('Accesso Consentito');
-        } else {
-            //: ALTRIMENTI stampa "Email non presente nel database".
-            console.log('Email non presente nel database');
+
+            newPEl.textContent = 'Accesso Consentito.';
+            newPEl.style.color = 'green';
+            emailFound = true;
+
+            //Appena viene trovata un'email corrispondente, la variabile booleana diventa vera
+            //e si interrompe il ciclo.
+            break;
+
         };
 
-    }
-    
+    };
+
+    //? SE a fine ciclo non è stata trovata alcuna corrispondenza, stampa "Email non presente nel database.".
+    if (!emailFound) {
+
+        newPEl.textContent = 'Email non presente nel database.';
+        newPEl.style.color = 'red';
+
+    };
+
 });
