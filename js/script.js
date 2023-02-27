@@ -23,3 +23,37 @@ vogliamo fare
 programma così come lo faremmo "a mano" 
 */
 
+//1- Definisco l'array di email.
+//2- Chiedo all'utente la sua Email tramite form e la memorizzo in una variabile.
+//3- Aggiungo un evento al pulsante per verificare l'email inserita dall'utente.
+//4- Creo un ciclo che possa controllare ogni indice del mio Array.
+//? SE l'email inserita corrisponde al valore di un indice, stampa 
+//"Accesso Consentito".
+//: ALTRIMENTI stampa "Email non presente nel database".
+
+//1- Definisco l'array di email.
+let eMails = ['fraser@outlook.com', 'esokullu@hotmail.com', 'isorashi@yahoo.com', 'khris@optonline.net', 'kaiser@gmail.com', 'mahbub@live.com', 'crobles@gmail.com'];
+
+//2- Chiedo all'utente la sua Email tramite form e la memorizzo in una variabile.
+let userEmailEl = document.getElementById('user-email');
+
+// 3- Aggiungo un evento al pulsante per verificare l'email inserita dall'utente.
+let sendButtonEl = document.getElementById('send-button');
+
+sendButtonEl.addEventListener('click', function () {
+
+    //4- Creo un ciclo che possa controllare ogni indice del mio Array.
+    for (i = 0; i < eMails.length; i++) {
+
+        //? SE l'email inserita corrisponde al valore di un indice, stampa 
+        //"Accesso Consentito".
+        if (userEmailEl.value === eMails[i]) {
+            console.log('Accesso Consentito');
+        } else {
+            //: ALTRIMENTI stampa "Email non presente nel database".
+            console.log('Email non presente nel database');
+        };
+
+    }
+    
+});
