@@ -1,0 +1,22 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid red;
+    border-radius: 500px;
+    background-color: rgb(29, 29, 29);
+    color: white;
+}
+
+
+#dice-results {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-between;
+    gap: 500px;
+}
+
+#dice-results .fa-solid {
+    font-size: 7em;
+}
